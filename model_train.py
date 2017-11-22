@@ -9,7 +9,7 @@ data_preprocess.preprocess_and_save_data(data_dir, gm.token_lookup, gm.create_lo
 int_text, vocab_to_int, int_to_vocab, token_dict = data_preprocess.load_preprocess()
 
 # Number of Epochs
-num_epochs = 5
+num_epochs = 100
 # Batch Size
 batch_size = 256
 # RNN Size
