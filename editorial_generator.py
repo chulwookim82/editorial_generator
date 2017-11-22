@@ -33,7 +33,7 @@ def pick_word(probabilities, int_to_vocab):
 
 
 gen_length = 200
-
+prime_word = 'trump'
 loaded_graph = tf.Graph()
 with tf.Session(graph=loaded_graph) as sess:
     # Load saved model
@@ -44,7 +44,7 @@ with tf.Session(graph=loaded_graph) as sess:
     input_text, initial_state, final_state, probs = get_tensors(loaded_graph)
 
     # Sentences generation setup
-    gen_sentences = []
+    gen_sentences = [prime_word]
     prev_state = sess.run(initial_state, {input_text: np.array([[1]])})
 
     # Generate sentences
@@ -63,11 +63,11 @@ with tf.Session(graph=loaded_graph) as sess:
         gen_sentences.append(pred_word)
 
     # Remove tokens
-    tv_script = ' '.join(gen_sentences)
+    editorial = ' '.join(gen_sentences)
     for key, token in token_dict.items():
         ending = ' ' if key in ['\n', '(', '"'] else ''
-        tv_script = tv_script.replace(' ' + token.lower(), key)
-    tv_script = tv_script.replace('\n ', '\n')
-    tv_script = tv_script.replace('( ', '(')
+        editorial = editorial.replace(' ' + token.lower(), key)
+    editorial = editorial.replace('\n ', '\n')
+    editorial = editorial.replace('( ', '(')
 
-    print(tv_script)
+    print(editorial)
